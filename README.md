@@ -11,7 +11,7 @@ Installation
 
 * Get the current repo
 ```
-wget https://github.com/nboley/idr/archive/2.0.2.zip
+wget https://github.com/kundajelab/idr/archive/2.0.4.zip
 ```
 
 * Install the dependencies
@@ -33,9 +33,9 @@ bash Anaconda3-2.2.0-Linux-x86_64.sh
 
 * Download and unzip the idr code
 ```
-wget https://github.com/nboley/idr/archive/2.0.2.zip
-unzip 2.0.2.zip
-cd 2.0.2/
+wget https://github.com/kundajelab/idr/archive/2.0.4.zip
+unzip 2.0.4.zip
+cd 2.0.4/
 ```
 
 * Then install idr 
@@ -173,6 +173,7 @@ Peaks rank versus idr scores are plotted in black. The overlayed boxplots displa
 Command Line Arguments
 ----------------------
 `````
+optional arguments:
   -h, --help            show this help message and exit
   --samples SAMPLES SAMPLES, -s SAMPLES SAMPLES
                         Files containing peaks and scores.
@@ -180,11 +181,11 @@ Command Line Arguments
                         If provided, all peaks will be taken from this file.
   --input-file-type {narrowPeak,broadPeak,bed,gff}
                         File type of --samples and --peak-list.
-  --rank RANK           Which column to use to rank peaks.	
+  --rank RANK           Which column to use to rank peaks.  
                         Options: signal.value p.value q.value columnIndex
                         Defaults:
-                        	narrowPeak/broadPeak: signal.value
-                        	bed: score
+                          narrowPeak/broadPeak: signal.value
+                          bed: score
   --output-file OUTPUT_FILE, -o OUTPUT_FILE
                         File to write output to.
                         Default: idrValues.txt
@@ -205,7 +206,7 @@ Command Line Arguments
                         Use peaks without an overlapping match and set the value to 0.
   --peak-merge-method {sum,avg,min,max}
                         Which method to use for merging peaks.
-                        	Default: 'sum' for signal/score/column indexes, 'min' for p/q-value.
+                          Default: 'sum' for signal/score/column indexes, 'min' for p/q-value.
   --initial-mu INITIAL_MU
                         Initial value of mu. Default: 0.10
   --initial-sigma INITIAL_SIGMA
@@ -219,8 +220,7 @@ Command Line Arguments
   --dont-filter-peaks-below-noise-mean
                         Allow signal points that are below the noise mean (should only be used if you know what you are doing).
   --use-best-multisummit-IDR
-                        Set the IDR value for a group of multi summit peaks (a group of peaks with the same chr/start/stop but different summits) to the best value across all of these peaks. This \
-is a work around for peak callers that don't do a good job splitting scores across multi summit peaks (e.g. MACS). If set in conjunction with --plot two plots will be created - one with alternate summits and one without.  Use this option with care.
+                        Set the IDR value for a group of multi summit peaks (a group of peaks with the same chr/start/stop but different summits) to the best value across all of these peaks. This is a work around for peak callers that don't do a good job splitting scores across multi summit peaks (e.g. MACS). If set in conjunction with --plot two plots will be created - one with alternate summits and one without.  Use this option with care.
   --allow-negative-scores
                         Allow negative values for scores. (should only be used if you know what you are doing)
   --random-seed RANDOM_SEED
@@ -234,14 +234,16 @@ is a work around for peak callers that don't do a good job splitting scores acro
   --version             show program's version number and exit
 `````
 
+
 Contributors
 ------------
 
 The main contributors of IDR code:
 
-  * Nathan Boleu        - Kundaje Lab, Dept. of Genetics, Stanford University
+  * Nathan Boley        - Kundaje Lab, Dept. of Genetics, Stanford University
   * Anshul Kundaje      - Assistant Professor, Dept. of Genetics, Stanford University
   * Peter J. Bickel     - Professor, Dept. of Statistics, University of California at Berkeley
+  * Jin Lee             - Software Developer, Dept. of Genetics, Stanford University
 
 References
 ----------
@@ -250,4 +252,4 @@ References
 Issues
 ------
 
-If you notice any problem with the code, please file an issue over [here](https://github.com/nboley/idr/issues)
+If you notice any problem with the code, please file an issue over [here](https://github.com/kundajelab/idr/issues)
