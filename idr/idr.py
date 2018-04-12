@@ -769,10 +769,10 @@ def plot(args, scores, ranks, IDRs, ofprefix=None):
     if ofprefix is None:
         ofprefix = args.output_file.name
     
-    colors = numpy.zeros(len(ranks[0]), dtype=str)
-    colors[:] = 'k'
-    colors[IDRs > args.soft_idr_threshold] = 'r'
-    
+    colors = []
+    for i in range(len(IDRs)):
+        colors.append('#FC9272' if IDRs[i]>args.soft_idr_threshold else 'k')
+        
     #matplotlib.rc('font', family='normal', weight='bold', size=10)
 
     fig = matplotlib.pyplot.figure( num=None, figsize=(12, 12))
@@ -785,9 +785,9 @@ def plot(args, scores, ranks, IDRs, ofprefix=None):
         "Ranks - (red >= %.2f IDR)" % args.soft_idr_threshold)
     matplotlib.pyplot.scatter((ranks[0]+1)/float(max(ranks[0])+1), 
                               (ranks[1]+1)/float(max(ranks[1])+1), 
-                              edgecolor=colors,
+                              edgecolor='none',
                               c=colors,
-                              alpha=0.05)
+                              alpha=0.25,s=5)
 
     matplotlib.pyplot.subplot(222)
     matplotlib.pyplot.xlabel("Sample 1 log10 Score")
@@ -796,9 +796,9 @@ def plot(args, scores, ranks, IDRs, ofprefix=None):
         "Log10 Scores - (red >= %.2f IDR)" % args.soft_idr_threshold)
     matplotlib.pyplot.scatter(numpy.log10(scores[0]+1),
                               numpy.log10(scores[1]+1), 
-                              edgecolor=colors,
+                              edgecolor='none',
                               c=colors, 
-                              alpha=0.05)
+                              alpha=0.25,s=5)
     
     def make_boxplots(sample_i):
         groups = defaultdict(list)
@@ -822,7 +822,7 @@ def plot(args, scores, ranks, IDRs, ofprefix=None):
                                 0, 0.5-math.log10(idr.CONVERGENCE_EPS_DEFAULT)])
         matplotlib.pyplot.scatter(20*norm_ranks, 
                                   -numpy.log10(IDRs), 
-                                  alpha=0.01, c='black')
+                                  alpha=0.1, c='black', edgecolor='none', s=5)
 
     matplotlib.pyplot.subplot(223)
     make_boxplots(0)
